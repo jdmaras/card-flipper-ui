@@ -2,6 +2,7 @@ import axios from "axios";
 import { ReactElement, useState } from "react";
 import Deck from "./Deck";
 import EmptyDeck from "./EmptyDeck";
+import Header from "./Header";
 
 //this tells what side of the card to display
 export enum CardSide {
@@ -79,6 +80,7 @@ function App(): ReactElement {
         background: '#00613e',
       }}
     >
+      <Header />
       <div className="draw-pile">
         {/* if more than 52 and less than one, it'll be an empty deck */}
         {cardsRemaining > 52 || cardsRemaining < 1 ? (
