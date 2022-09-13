@@ -1,5 +1,7 @@
 import axios from "axios";
 import { ReactElement, useState } from "react";
+import Deck from "./Deck";
+import EmptyDeck from "./EmptyDeck";
 
 //this tells what side of the card to display
 export enum CardSide {
@@ -68,7 +70,34 @@ function App(): ReactElement {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        height: '100vh',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: '#00613e',
+      }}
+    >
+      <div className="draw-pile">
+        {/* if more than 52 and less than one, it'll be an empty deck */}
+        {cardsRemaining > 52 || cardsRemaining < 1 ? (
+          <EmptyDeck clickAction={shuffleDeck} displayText="Shuffle Deck" />
+        ) : (
+          // if it has less than 52 and more than 1, it will have these options
+          <Deck cardSide={CardSide.BACK} clickAction={flipCard} />
+        )}
+      </div>
+      <div className="draw-pile">
+        {/* no cards have been flipped yet */}
+        {cardsRemaining > 51 ? (
+          <EmptyDeck displayText="Flip Cards" />
+        ) : (
+          <Deck cardSide={CardSide.FRONT}
+            clickAction={unflipCard}
+            imageName={flippedCardName} />
+        )}
+      </div>
 
     </div>
   );
