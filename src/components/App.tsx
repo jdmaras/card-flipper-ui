@@ -5,6 +5,8 @@ import EmptyDeck from "./EmptyDeck";
 import Header from "./Header";
 
 //this tells what side of the card to display
+//enum is a collection of option that you can reference against
+//enum are a way to protect you from yourself
 export enum CardSide {
   FRONT,
   BACK
@@ -90,7 +92,7 @@ function App(): ReactElement {
           <Deck cardSide={CardSide.BACK} clickAction={flipCard} />
         )}
       </div>
-      <div className="draw-pile">
+      <div className="discard-pile">
         {/* no cards have been flipped yet */}
         {cardsRemaining > 51 ? (
           <EmptyDeck displayText="Flip Cards" />
